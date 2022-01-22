@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="edbs.css">
+
+</head>
+
+<body>
+<th:block layout:fragment="content">
+    <form action="/book/" method="post">
+        <label for="title">Book Title:</label>
+        <input required="required" type="text" id="title" name="title"><br><br>
+        <label for="author">Author:</label>
+        <input required="required" type="text" id="author" name="author"><br><br>
+        <label for="price">Preis:</label>
+        <input required="required" type="text" id="price" name="price"><br><br>
+
+        <label for="qty">Anzahl:</label>
+        <input required="required" type="text" id="qty" name="qty"><br><br>
+
+
+        <input type="submit" value="Insert">
+    </form>
+    <br><br><br><br>
+    <table>
+       <tr>
+           <th>Id</th>
+           <th>Buch</th>
+           <th>Author</th>
+           <th>Preis</th>
+           <th>Anzahl</th>
+           <th></th>
+           <th></th>
+       </tr>
+
+        <tr class="col-lg-3" th:each="book: ${books}">
+            <td th:text="${book.getId()}"></td>
+            <td th:text="${book.getTitle()}"></td>
+            <td th:text="${book.getAuthor()}"></td>
+            <td th:text="${book.getPrice()}"></td>
+            <td th:text="${book.getQty()}"></td>
+            <td><a th:href="${'/edit/'+book.getId()}">Edit</a></td>
+            <td><a th:href="${'/delete/'+book.getId()}">Delete</a></td>
+
+
+        </tr>
+
+    </table>
+
+
+
+</th:block>
+</body>
+</html>
